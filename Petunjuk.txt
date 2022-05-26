@@ -1,0 +1,6 @@
+===PETUNJUK===
+1. Pastikan dalam perangkat anda (PC/Laptop) sudah terpasang Aplikasi Maple 2018.0 atau yang lebih baru
+2. Jalankan file "Media Trigonometri" dengan melakukan double-click pada file
+3. Jika tidak terbuka, silahkan klik kanan pada file "Media Trigonometri", kemudian pilih open with
+4. Pilih mapletviewer kemudian klik OK
+5. Maplet sudah bisa digunakan

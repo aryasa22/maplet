@@ -1,0 +1,2078 @@
+with(Maplets[Elements]):
+with(Maplets[Tools]):
+with(plots):
+with(plottools):
+randomize():
+sudut:=[
+		0,30,45,60,90,
+		120,135,150,180,
+		210,225,240,270,
+		300,315,330,360
+	]:
+benar:=[
+		"Wah, semuanya benar!!!",
+		"Seratus!! Benar semua",
+		"Hebat, jawabanu tepat semuanya!!"
+	]:
+salah:=[
+		"Hmm, coba lebih teliti lagi",
+		"Masih ada yang salah tuh",
+		"Masih ada yang salah, ayo cek lagi"
+	]:
+nyerah:=[
+		"Ayo belajar lagi",
+		"Ayo coba lagi, selanjutnya pasti bisa!",
+		"Semangat, belajar lagi dan taklukkan latihannya"
+	]:
+warning:=
+		"Silahkan isi semuanya, kemudian klik \"Jawab\""
+	:
+pos:=
+		"Positif"
+	:
+neg:=
+		"Negatif"
+	:
+sud:=rand(1..nops(sudut)):
+ben:=rand(1..nops(benar)):
+sal:=rand(1..nops(salah)):
+nyer:=rand(1..nops(nyerah)):
+
+#Prosedur Plotting Grafik Animasi
+F:=proc(s) plots[display](
+		plots[implicitplot](x^2+y^2=1,x=-1..1,y=-1..1,scaling=constrained),
+		plottools[sector]([0,0],0.2,0..s+0.000001,color=red),
+		plottools[point]([cos(s),sin(s)],color=blue,symbol=solidcircle,symbolsize=20),
+		pointplot([0,0],view=[-1.15..1.15,-1.15..1.15]),
+		plottools[line]([0,0],[cos(s),sin(s)],color=coral,thickness=3),
+		plottools[line]([0,0],[cos(s),0],color=green,thickness=3),
+		plottools[line]([cos(s),0],[cos(s),sin(s)],color=magenta,thickness=3),
+		textplot([cos(s),sin(s),"A",'font'=["Arial Black",12]],'align'=above),
+		textplot([cos(s)/2,sin(s)/2,"r",'font'=["Arial Black",12]]),
+		textplot([cos(s)/2,0,"a",'font'=["Arial Black",12]]),
+		textplot([cos(s),sin(s)/2,"b",'font'=["Arial Black",12]])
+	); end proc:
+G:=proc(s) plots[display](
+		plots[implicitplot](x^2+y^2=1,x=-1..1,y=-1..1,scaling=constrained),
+		plottools[sector]([0,0],0.2,0..s+0.000001,color=red),
+		plottools[sector]([0,0],0.2,s+0.000001..Pi/2,color=blue),
+		plottools[point]([cos(s),sin(s)],color=blue,symbol=solidcircle,symbolsize=20),
+		pointplot([0,0],view=[-1.15..1.15,-1.15..1.15]),
+		plottools[line]([0,0],[cos(s),sin(s)],color=blue,thickness=3),
+		plottools[line]([0,0],[cos(s),0],color=green,thickness=3),
+		plottools[line]([0,0],[0,sin(s)],color=magenta,thickness=3),
+		plottools[line]([cos(s),0],[cos(s),sin(s)],color=magenta,thickness=3),
+		plottools[line]([0,sin(s)],[cos(s),sin(s)],color=green,thickness=3),
+		textplot([cos(s),sin(s),"A",'font'=["Arial Black",12]],'align'=above),
+		textplot([cos(s)/2,0,"a",'font'=["Arial Black",12]]),
+		textplot([0,sin(s)/2,"a'",'font'=["Arial Black",12]]),
+		textplot([cos(s),sin(s)/2,"b",'font'=["Arial Black",12]]),
+		textplot([cos(s)/2,sin(s),"b'",'font'=["Arial Black",12]]),
+		textplot([cos(s)/2,sin(s)/2,"r",'font'=["Arial Black",12]])
+	); end proc:
+H2:=proc(s) plots[display](
+		plots[implicitplot](x^2+y^2=1,x=-1..1,y=-1..1,scaling=constrained),
+		plottools[sector]([0,0],0.2,Pi..s+0.000001,color=red),
+		plottools[sector]([0,0],0.2,0..Pi,color=blue),
+		plottools[point]([cos(s),sin(s)],color=blue,symbol=solidcircle,symbolsize=20),
+		pointplot([0,0],view=[-1.15..1.15,-1.15..1.15]),
+		plottools[line]([0,0],[cos(s),sin(s)],color=coral,thickness=3),
+		plottools[line]([0,0],[cos(s),0],color=green,thickness=3),
+		plottools[line]([cos(s),0],[cos(s),sin(s)],color=magenta,thickness=3),
+		textplot([cos(s),sin(s),"A'",'font'=["Arial Black",12]],'align'=above),
+		textplot([cos(s)/2,sin(s)/2,"r'",'font'=["Arial Black",12]]),
+		textplot([cos(s)/2,0,"a'",'font'=["Arial Black",12]]),
+		textplot([cos(s),sin(s)/2,"b'",'font'=["Arial Black",12]])
+	); end proc:
+H4:=proc(s) plots[display](
+		plots[implicitplot](x^2+y^2=1,x=-1..1,y=-1..1,scaling=constrained),
+		plottools[sector]([0,0],0.2,0..s+0.000001,color=red),
+		plottools[sector]([0,0],0.2,s+0.000001..2*Pi,color=blue),
+		plottools[point]([cos(s),sin(s)],color=blue,symbol=solidcircle,symbolsize=20),
+		pointplot([0,0],view=[-1.15..1.15,-1.15..1.15]),
+		plottools[line]([0,0],[cos(s),sin(s)],color=coral,thickness=3),
+		plottools[line]([0,0],[cos(s),0],color=green,thickness=3),
+		plottools[line]([cos(s),0],[cos(s),sin(s)],color=magenta,thickness=3),
+		textplot([cos(s),sin(s),"A'",'font'=["Arial Black",12]],'align'=above),
+		textplot([cos(s)/2,sin(s)/2,"r'",'font'=["Arial Black",12]]),
+		textplot([cos(s)/2,0,"a'",'font'=["Arial Black",12]]),
+		textplot([cos(s),sin(s)/2,"b'",'font'=["Arial Black",12]])
+	); end proc:
+
+#Fungsi untuk tan pada tampilan materi
+T1:=proc(a) if a=90 or a=270 then "Tak Terdefinisi" else evalf(tan(a*Pi/180),3) end if; end proc:
+T2:=proc(a) if a=90 then "Tak Terdefinisi" else evalf(tan(a*Pi/180),3) end if; end proc:
+T3:=proc(a) if a=270 then "Tak Terdefinisi" else evalf(tan(a*Pi/180),3) end if; end proc:
+
+#Prosedur Mengacak Sudut
+sdt:=proc() global a,correctsin,correctcos,correcttan;
+		a:=op(sudut[sud()]);
+		Set(TFSudut_Lat=a);
+		Set(TFWarning_Lat=warning);
+		Set(TFSin_Lat="");
+		Set(TFCos_Lat="");
+		Set(TFTan_Lat="");
+		Set(B2_Lat(enabled)=true);
+		Set(B3_Lat(enabled)=true);
+		Set(TFSin_Lat(background)=pink);
+		Set(TFCos_Lat(background)=pink);
+		Set(TFTan_Lat(background)=pink);
+		Set(TFWarning_Lat(background)=pink);
+		correctsin:=sin(a*Pi/180);
+		correctcos:=cos(a*Pi/180);
+		if a = 90 or a = 270 then correcttan:="Tak Terdefinisi"
+				else 
+					correcttan:=tan(a*Pi/180) end if;
+	end proc:
+
+#Prosedur Cek Jawaban Latihan
+cek:=proc() global a, correctsin,correctcos,correcttan;
+	local usersin,usercos,usertan;
+		usersin:=Get(TFSin_Lat::anything,corrections=true,update=true);
+		usercos:=Get(TFCos_Lat::anything,corrections=true,update=true);
+		usertan:=Get(TFTan_Lat::anything,corrections=true,update=true);
+		if Get(TFSin_Lat)="" or Get(TFCos_Lat)="" or Get(TFTan_Lat)="" then
+			Set(TFWarning_Lat="Silahkan jawab semuanya terlebih dahulu");return; end if;
+		if usersin=correctsin and correctcos=usercos and usertan=correcttan then
+			Set(TFWarning_Lat=cat(benar[ben()]),TFWarning_Lat(background)=green);
+			Set(B3_Lat(enabled)=false)
+				else
+					Set(TFWarning_Lat=cat(salah[sal()]),TFWarning_Lat(background)=yellow);
+					Set(B3_Lat(enabled)=true) end if;
+		if usersin=correctsin then Set(TFSin_Lat(background)=green)
+			else
+				Set(TFSin_Lat(background)=yellow) end if;
+		if usercos=correctcos then Set(TFCos_Lat(background)=green)
+			else
+				Set(TFCos_Lat(background)=yellow) end if;
+		if usertan=correcttan then Set(TFTan_Lat(background)=green)
+			else
+				Set(TFTan_Lat(background)=yellow) end if;
+	end proc:
+
+#Prosedur Memunculkan Jawaban Latihan
+show:=proc() global a, correctsin,correctcos,correcttan;
+		correctsin:=sin(a*Pi/180);
+		correctcos:=cos(a*Pi/180);
+		if a = 90 then correcttan="Tak Terdefinisi"
+			elif a = 270 then correcttan="Tak Terdefinisi"
+				else 
+					correcttan=tan(a*Pi/180) end if;
+		Set(TFSin_Lat=correctsin,TFSin_Lat(background)="#FFCC99");
+		Set(TFCos_Lat=correctcos,TFCos_Lat(background)="#FFCC99");
+		Set(TFTan_Lat=correcttan,TFTan_Lat(background)="#FFCC99");
+		Set(TFWarning_Lat=cat(nyerah[nyer()]),TFWarning_Lat(background)="#FFCC99");
+		Set(B2_Lat(enabled)=false);
+	end proc:
+
+#Prosedur Memulai Soal Evaluasi
+
+mulai:=proc() global a; 
+		a:=1;
+		Set(MVSoal(value)=MathML[Export]("Nilai sinus bernilai negatif pada sudut-sudut di bawah ini,kecuali..."));
+		Set(TFNomor="1");
+		Set(MA=MathML[Export]("200&deg;"));
+		Set(MB=MathML[Export]("35&deg;"));
+		Set(MC=MathML[Export]("330&deg;"));
+		Set(MD=MathML[Export]("270&deg;"));
+		Set(MF=MathML[Export]("300&deg;"));
+		Set(BNext(enabled)=true); 
+		Set(BPrev(enabled)=false);
+		Set(BMulai(enabled)=false);
+		Set(BSubmit(enabled)=true);
+		Set(TBWarning="Silahkan jawab semua pertanyaannya, apabila sudah selesai menjawab, tekan tombol \"Submit\" untuk melihat nilai. Sekali tombol \"Submit\" ditekan, maka kamu tidak bisa mengubah jawaban lagi")
+	end proc:
+maju:=proc() global a;
+		a:=a+1;
+		if a=1 then 
+				Set(MVSoal(value)=MathML[Export]("Nilai sinus bernilai negatif pada sudut-sudut di bawah ini,kecuali..."));
+				Set(TFNomor="1");
+				Set(MA=MathML[Export]("200&deg;"));
+				Set(MB=MathML[Export]("35&deg;"));
+				Set(MC=MathML[Export]("330&deg;"));
+				Set(MD=MathML[Export]("270&deg;"));
+				Set(MF=MathML[Export]("300&deg;"));
+			elif a=2 then 
+				Set(MVSoal(value)=MathML[Export]("Nilai Cos a&deg; &middot; Sin a&deg; bernilai positif saat a=..."));
+				Set(TFNomor="2");
+				Set(MA=MathML[Export](235));
+				Set(MB=MathML[Export](360));
+				Set(MC=MathML[Export](330));
+				Set(MD=MathML[Export](270));
+				Set(MF=MathML[Export](157));
+			elif a=3 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Sin 120&deg;?"));
+				Set(TFNomor="3");
+				Set(MA=MathML[Export](-1));
+				Set(MB=MathML[Export]((1/2)*3^(1/2)));
+				Set(MC=MathML[Export](0));
+				Set(MD=MathML[Export](-1/2));
+				Set(MF=MathML[Export](-(1/2)*3^(1/2)));
+			elif a=4 then 
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Cos 225&deg;?"));
+				Set(TFNomor="4");
+				Set(MA=MathML[Export]((1/2)*2^(1/2)));
+				Set(MB=MathML[Export](1/2));
+				Set(MC=MathML[Export](-(1/2)*2^(1/2)));
+				Set(MD=MathML[Export](-1/2));
+				Set(MF=MathML[Export]("0.258"));
+			elif a=5 then
+				Set(MVSoal(value)=MathML[Export]("Jika nilai Sin 157&deg; = 0.39, maka nilai dari Cos 67&deg; adalahh..."));
+				Set(TFNomor="5");
+				Set(MA=MathML[Export](1.64));
+				Set(MB=MathML[Export](2.56));
+				Set(MC=MathML[Export]("0.61"));
+				Set(MD=MathML[Export]("0.39"));
+				Set(MF=MathML[Export](0));
+			elif a=6 then
+				Set(MVSoal(value)=MathML[Export]("Jika nilai Cos a&deg; = -12/13, maka berapakah nilai dari Cot a&deg;?"));
+				Set(TFNomor="6");
+				Set(MA=MathML[Export](12/5));
+				Set(MB=MathML[Export](-12/5));
+				Set(MC=MathML[Export](-13/12));
+				Set(MD=MathML[Export](5/12));
+				Set(MF=MathML[Export](-5/12));
+			elif a=7 then
+				Set(MVSoal(value)=MathML[Export]("Tanpa menggunakan kalkulator, nilai dari Sin 330&deg; + Tan 135&deg; + Cos 210&deg; adalah..."));
+				Set(TFNomor="7");
+				Set(MA=MathML[Export](1));
+				Set(MB=MathML[Export](-(1/2)*2^(1/2)));
+				Set(MC=MathML[Export](-3+2^(1/2)));
+				Set(MD=MathML[Export]((-3+2^(1/2))/2));
+				Set(MF=MathML[Export]((-3-2^(1/2))/2));
+			elif a=8 then
+				Set(MVSoal(value)=MathML[Export]("Tanpa menggunakan kalkulator, nilai dari Cos 330&deg; &middot; Sin 135&deg; adalah..."));
+				Set(TFNomor="8");
+				Set(MA=MathML[Export](2));
+				Set(MB=MathML[Export](-1/2));
+				Set(MC=MathML[Export](-2^(1/2)));
+				Set(MD=MathML[Export](2^(1/2)));
+				Set(MF=MathML[Export](1/2));
+			elif a=9 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Sin 17&deg; apabila nilai dari Sin 197&deg; = -0.29 dan Cos 197&deg; = -0.96?"));
+				Set(TFNomor="9");
+				Set(MA=MathML[Export](3.29));
+				Set(MB=MathML[Export]("-0.96"));
+				Set(MC=MathML[Export]("0.96"));
+				Set(MD=MathML[Export]("0.29"));
+				Set(MF=MathML[Export]("-0.29"));
+			elif a=10 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Sin 50&deg; - Cos 40&deg;?"));
+				Set(TFNomor="10");
+				Set(MA=MathML[Export](3));
+				Set(MB=MathML[Export](0));
+				Set(MC=MathML[Export](-1));
+				Set(MD=MathML[Export](2));
+				Set(MF=MathML[Export]("-0.29"));
+			elif a=11 then
+				Set(MVSoal(value)=MathML[Export]("Pada segitiga ABC, jika nilai Sin (A+B) = 3/5 dan Cos C = 4/5, maka nilai dari Tan C adalah..."));
+				Set(TFNomor="11");
+				Set(MA=MathML[Export](5/3));
+				Set(MB=MathML[Export](5/4));
+				Set(MC=MathML[Export](3/4));
+				Set(MD=MathML[Export](1));
+				Set(MF=MathML[Export](-3/4));
+			elif a=12 then
+				Set(MVSoal(value)=MathML[Export]("Tanpa menggunakan kalkulator, nilai dari (Sin 80&deg; - Cos 190&deg;)/(Cos 350&deg; - Cos 170&deg;) = ...)"));
+				Set(TFNomor="12");
+				Set(MA=MathML[Export](2));
+				Set(MB=MathML[Export](1/2));
+				Set(MC=MathML[Export](-1));
+				Set(MD=MathML[Export](1));
+				Set(MF=MathML[Export](0));
+			elif a=13 then
+				Set(MVSoal(value)=MathML[Export]("Tanpa menggunakan kalkulator, nilai dari Tan 57&deg;/Tan 237&deg; = ..."));
+				Set(TFNomor="13");
+				Set(MA=MathML[Export](1));
+				Set(MB=MathML[Export](1/2));
+				Set(MC=MathML[Export](-1));
+				Set(MD=MathML[Export](2));
+				Set(MF=MathML[Export](0));
+			elif a=14 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Cos 330&deg; + Sin 60&deg;?"));
+				Set(TFNomor="14");
+				Set(MA=MathML[Export](2^(1/2)));
+				Set(MB=MathML[Export]((1/2)*2^(1/2)));
+				Set(MC=MathML[Export](-2^(1/2)));
+				Set(MD=MathML[Export](2*2^(1/2)));
+				Set(MF=MathML[Export](1));
+			elif a=15 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Sin 225&deg; &middot; Cos 240&deg; &middot; Tan 135&deg;?"));
+				Set(TFNomor="15");
+				Set(MA=MathML[Export](2^(1/2)));
+				Set(MB=MathML[Export](-1/2));
+				Set(MC=MathML[Export](-(1/2)*2^(1/2)));
+				Set(MD=MathML[Export](2*2^(1/2)));
+				Set(MF=MathML[Export](0));
+			elif a=16 then
+				Set(MVSoal(value)=MathML[Export]("Nilai x yang memenuhi persamaan Sin(10&deg; - 3x&deg;) = Cos(2x&deg; + 60&deg;) adalah..."));
+				Set(TFNomor="16");
+				Set(MA=MathML[Export](20));
+				Set(MB=MathML[Export](-20));
+				Set(MC=MathML[Export](45));
+				Set(MD=MathML[Export](60));
+				Set(MF=MathML[Export](0));
+			elif a=17 then
+				Set(MVSoal(value)=MathML[Export]("Jika Tan a&deg; = -1/2 dan a&deg; berada di kuadran di mana Cos dan Tan bernilai negatif, maka nilai dari 2 Sin a&deg; / 3 Cos a&deg; adalah..."));
+				Set(TFNomor="17");
+				Set(MA=MathML[Export](-1));
+				Set(MB=MathML[Export](-2/(5^1/2)));
+				Set(MC=MathML[Export](-1/3));
+				Set(MD=MathML[Export](2/(5^(1/2))));
+				Set(MF=MathML[Export](5^(1/2)));
+			elif a=18 then
+				Set(MVSoal(value)=MathML[Export]("Jika Cos 17&deg; = a, maka nilai dari Sin 73&deg; - Cos 163&deg; + Cos 343&deg; = ..."));
+				Set(TFNomor="18");
+				Set(MA=MathML[Export](1/a));
+				Set(MB=MathML[Export](2*a));
+				Set(MC=MathML[Export](3*a));
+				Set(MD=MathML[Export](1-a));
+				Set(MF=MathML[Export](a));
+			elif a=19 then
+				Set(MVSoal(value)=MathML[Export]("Nilai dari Sec (90&deg; - a) / Csc (180&deg;-a) adalah..."));
+				Set(TFNomor="19");
+				Set(MA=MathML[Export](-1));
+				Set(MB=MathML[Export](1/2));
+				Set(MC=MathML[Export](1));
+				Set(MD=MathML[Export](0));
+				Set(MF=MathML[Export](2^(1/2)));
+			elif a=20 then
+				Set(MVSoal(value)=MathML[Export]("Jika diketahui nilai Tan 26&deg; = t, maka berapakah nilai dari Tan 206&deg; - Tan 334&deg;?"));
+				Set(TFNomor="20");
+				Set(MA=MathML[Export](-t));
+				Set(MB=MathML[Export](t/3));
+				Set(MC=MathML[Export](3*t));
+				Set(MD=MathML[Export](t));
+				Set(MF=MathML[Export](0));
+		end if;
+		if a>=20 then Set(BNext(enabled)=false)
+			else  Set(BNext(enabled)=true)
+		end if;
+		if a<=1 then Set(BPrev(enabled)=false) 
+			else Set(BPrev(enabled)=true)
+		end if;
+	end proc:
+mundur:=proc() global a;
+		a:=a-1;
+		if a=1 then 
+				Set(MVSoal(value)=MathML[Export]("Nilai sinus bernilai negatif pada sudut-sudut di bawah ini,kecuali..."));
+				Set(TFNomor="1");
+				Set(MA=MathML[Export]("200&deg;"));
+				Set(MB=MathML[Export]("35&deg;"));
+				Set(MC=MathML[Export]("330&deg;"));
+				Set(MD=MathML[Export]("270&deg;"));
+				Set(MF=MathML[Export]("300&deg;"));
+			elif a=2 then 
+				Set(MVSoal(value)=MathML[Export]("Nilai Cos a&deg; &middot; Sin a&deg; bernilai positif saat a=..."));
+				Set(TFNomor="2");
+				Set(MA=MathML[Export](235));
+				Set(MB=MathML[Export](360));
+				Set(MC=MathML[Export](330));
+				Set(MD=MathML[Export](270));
+				Set(MF=MathML[Export](157));
+			elif a=3 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Sin 120&deg;?"));
+				Set(TFNomor="3");
+				Set(MA=MathML[Export](-1));
+				Set(MB=MathML[Export]((1/2)*3^(1/2)));
+				Set(MC=MathML[Export](0));
+				Set(MD=MathML[Export](-1/2));
+				Set(MF=MathML[Export](-(1/2)*3^(1/2)));
+			elif a=4 then 
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Cos 225&deg;?"));
+				Set(TFNomor="4");
+				Set(MA=MathML[Export]((1/2)*2^(1/2)));
+				Set(MB=MathML[Export](1/2));
+				Set(MC=MathML[Export](-(1/2)*2^(1/2)));
+				Set(MD=MathML[Export](-1/2));
+				Set(MF=MathML[Export]("0.258"));
+			elif a=5 then
+				Set(MVSoal(value)=MathML[Export]("Jika nilai Sin 157&deg; = 0.39, maka nilai dari Cos 67&deg; adalahh..."));
+				Set(TFNomor="5");
+				Set(MA=MathML[Export](1.64));
+				Set(MB=MathML[Export](2.56));
+				Set(MC=MathML[Export]("0.61"));
+				Set(MD=MathML[Export]("0.39"));
+				Set(MF=MathML[Export](0));
+			elif a=6 then
+				Set(MVSoal(value)=MathML[Export]("Jika nilai Cos a&deg; = -12/13, maka berapakah nilai dari Cot a&deg;?"));
+				Set(TFNomor="6");
+				Set(MA=MathML[Export](12/5));
+				Set(MB=MathML[Export](-12/5));
+				Set(MC=MathML[Export](-13/12));
+				Set(MD=MathML[Export](5/12));
+				Set(MF=MathML[Export](-5/12));
+			elif a=7 then
+				Set(MVSoal(value)=MathML[Export]("Tanpa menggunakan kalkulator, nilai dari Sin 330&deg; + Tan 135&deg; + Cos 210&deg; adalah..."));
+				Set(TFNomor="7");
+				Set(MA=MathML[Export](1));
+				Set(MB=MathML[Export](-(1/2)*2^(1/2)));
+				Set(MC=MathML[Export](-3+2^(1/2)));
+				Set(MD=MathML[Export]((-3+2^(1/2))/2));
+				Set(MF=MathML[Export]((-3-2^(1/2))/2));
+			elif a=8 then
+				Set(MVSoal(value)=MathML[Export]("Tanpa menggunakan kalkulator, nilai dari Cos 330&deg; &middot; Sin 135&deg; adalah..."));
+				Set(TFNomor="8");
+				Set(MA=MathML[Export](2));
+				Set(MB=MathML[Export](-1/2));
+				Set(MC=MathML[Export](-2^(1/2)));
+				Set(MD=MathML[Export](2^(1/2)));
+				Set(MF=MathML[Export](1/2));
+			elif a=9 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Sin 17&deg; apabila nilai dari Sin 197&deg; = -0.29 dan Cos 197&deg; = -0.96?"));
+				Set(TFNomor="9");
+				Set(MA=MathML[Export](3.29));
+				Set(MB=MathML[Export]("-0.96"));
+				Set(MC=MathML[Export]("0.96"));
+				Set(MD=MathML[Export]("0.29"));
+				Set(MF=MathML[Export]("-0.29"));
+			elif a=10 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Sin 50&deg; - Cos 40&deg;?"));
+				Set(TFNomor="10");
+				Set(MA=MathML[Export](3));
+				Set(MB=MathML[Export](0));
+				Set(MC=MathML[Export](-1));
+				Set(MD=MathML[Export](2));
+				Set(MF=MathML[Export]("-0.29"));
+			elif a=11 then
+				Set(MVSoal(value)=MathML[Export]("Pada segitiga ABC, jika nilai Sin (A+B) = 3/5 dan Cos C = 4/5, maka nilai dari Tan C adalah..."));
+				Set(TFNomor="11");
+				Set(MA=MathML[Export](5/3));
+				Set(MB=MathML[Export](5/4));
+				Set(MC=MathML[Export](3/4));
+				Set(MD=MathML[Export](1));
+				Set(MF=MathML[Export](-3/4));
+			elif a=12 then
+				Set(MVSoal(value)=MathML[Export]("Tanpa menggunakan kalkulator, nilai dari (Sin 80&deg; - Cos 190&deg;)/(Cos 350&deg; - Cos 170&deg;) = ...)"));
+				Set(TFNomor="12");
+				Set(MA=MathML[Export](2));
+				Set(MB=MathML[Export](1/2));
+				Set(MC=MathML[Export](-1));
+				Set(MD=MathML[Export](1));
+				Set(MF=MathML[Export](0));
+			elif a=13 then
+				Set(MVSoal(value)=MathML[Export]("Tanpa menggunakan kalkulator, nilai dari Tan 57&deg;/Tan 237&deg; = ..."));
+				Set(TFNomor="13");
+				Set(MA=MathML[Export](1));
+				Set(MB=MathML[Export](1/2));
+				Set(MC=MathML[Export](-1));
+				Set(MD=MathML[Export](2));
+				Set(MF=MathML[Export](0));
+			elif a=14 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Cos 330&deg; + Sin 60&deg;?"));
+				Set(TFNomor="14");
+				Set(MA=MathML[Export](2^(1/2)));
+				Set(MB=MathML[Export]((1/2)*2^(1/2)));
+				Set(MC=MathML[Export](-2^(1/2)));
+				Set(MD=MathML[Export](2*2^(1/2)));
+				Set(MF=MathML[Export](1));
+			elif a=15 then
+				Set(MVSoal(value)=MathML[Export]("Berapakah nilai dari Sin 225&deg; &middot; Cos 240&deg; &middot; Tan 135&deg;?"));
+				Set(TFNomor="15");
+				Set(MA=MathML[Export](2^(1/2)));
+				Set(MB=MathML[Export](-1/2));
+				Set(MC=MathML[Export](-(1/2)*2^(1/2)));
+				Set(MD=MathML[Export](2*2^(1/2)));
+				Set(MF=MathML[Export](0));
+			elif a=16 then
+				Set(MVSoal(value)=MathML[Export]("Nilai x yang memenuhi persamaan Sin(10&deg; - 3x&deg;) = Cos(2x&deg; + 60&deg;) adalah..."));
+				Set(TFNomor="16");
+				Set(MA=MathML[Export](20));
+				Set(MB=MathML[Export](-20));
+				Set(MC=MathML[Export](45));
+				Set(MD=MathML[Export](60));
+				Set(MF=MathML[Export](0));
+			elif a=17 then
+				Set(MVSoal(value)=MathML[Export]("Jika Tan a&deg; = -1/2 dan a&deg; berada di kuadran di mana Cos dan Tan bernilai negatif, maka nilai dari 2 Sin a&deg; / 3 Cos a&deg; adalah..."));
+				Set(TFNomor="17");
+				Set(MA=MathML[Export](-1));
+				Set(MB=MathML[Export](-2/(5^1/2)));
+				Set(MC=MathML[Export](-1/3));
+				Set(MD=MathML[Export](2/(5^(1/2))));
+				Set(MF=MathML[Export](5^(1/2)));
+			elif a=18 then
+				Set(MVSoal(value)=MathML[Export]("Jika Cos 17&deg; = a, maka nilai dari Sin 73&deg; - Cos 163&deg; + Cos 343&deg; = ..."));
+				Set(TFNomor="18");
+				Set(MA=MathML[Export](1/a));
+				Set(MB=MathML[Export](2*a));
+				Set(MC=MathML[Export](3*a));
+				Set(MD=MathML[Export](1-a));
+				Set(MF=MathML[Export](a));
+			elif a=19 then
+				Set(MVSoal(value)=MathML[Export]("Nilai dari Sec (90&deg; - a) / Csc (180&deg;-a) adalah..."));
+				Set(TFNomor="19");
+				Set(MA=MathML[Export](-1));
+				Set(MB=MathML[Export](1/2));
+				Set(MC=MathML[Export](1));
+				Set(MD=MathML[Export](0));
+				Set(MF=MathML[Export](2^(1/2)));
+			elif a=20 then
+				Set(MVSoal(value)=MathML[Export]("Jika diketahui nilai Tan 26&deg; = t, maka berapakah nilai dari Tan 206&deg; - Tan 334&deg;?"));
+				Set(TFNomor="20");
+				Set(MA=MathML[Export](-t));
+				Set(MB=MathML[Export](t/3));
+				Set(MC=MathML[Export](3*t));
+				Set(MD=MathML[Export](t));
+				Set(MF=MathML[Export](0));
+		end if;
+		if a>=20 then Set(BNext(enabled)=false)
+			else  Set(BNext(enabled)=true)
+		end if;
+		if a<=1 then Set(BPrev(enabled)=false) 
+			else Set(BPrev(enabled)=true)
+		end if;
+	end proc:
+
+#Prosedur Cek Jawaban Evaluasi
+
+submit:=proc()
+	global benar1,benar2,benar3,benar4,benar5,benar6,benar7,benar8,benar9,benar10,
+	benar11,benar12,benar13,benar14,benar15,benar16,benar17,benar18,benar19,benar20,
+	p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18,p19,p20;
+	local N,user1,user2,user3,user4,user5,user6,user7,user8,user9,user10,
+	user11,user12,user13,user14,user15,user16,user17,user18,user19,user20;
+		benar1:=B;
+		benar2:=A;
+		benar3:=B;
+		benar4:=C;
+		benar5:=D;
+		benar6:=A;
+		benar7:=E;
+		benar8:=E;
+		benar9:=D;
+		benar10:=B;
+		benar11:=C;
+		benar12:=D;
+		benar13:=A;
+		benar14:=A;
+		benar15:=B;
+		benar16:=B;
+		benar17:=C;
+		benar18:=C;
+		benar19:=C;
+		benar20:=E;
+		user1:=Get(TFJ1::anything,corrections=true,update=true);
+		user2:=Get(TFJ2::anything,corrections=true,update=true);
+		user3:=Get(TFJ3::anything,corrections=true,update=true);
+		user4:=Get(TFJ4::anything,corrections=true,update=true);
+		user5:=Get(TFJ5::anything,corrections=true,update=true);
+		user6:=Get(TFJ6::anything,corrections=true,update=true);
+		user7:=Get(TFJ7::anything,corrections=true,update=true);
+		user8:=Get(TFJ8::anything,corrections=true,update=true);
+		user9:=Get(TFJ9::anything,corrections=true,update=true);
+		user10:=Get(TFJ10::anything,corrections=true,update=true);
+		user11:=Get(TFJ11::anything,corrections=true,update=true);
+		user12:=Get(TFJ12::anything,corrections=true,update=true);
+		user13:=Get(TFJ13::anything,corrections=true,update=true);
+		user14:=Get(TFJ14::anything,corrections=true,update=true);
+		user15:=Get(TFJ15::anything,corrections=true,update=true);
+		user16:=Get(TFJ16::anything,corrections=true,update=true);
+		user17:=Get(TFJ17::anything,corrections=true,update=true);
+		user18:=Get(TFJ18::anything,corrections=true,update=true);
+		user19:=Get(TFJ19::anything,corrections=true,update=true);
+		user20:=Get(TFJ20::anything,corrections=true,update=true);
+		Set(TFJ1(editable)=false);
+		Set(TFJ2(editable)=false);
+		Set(TFJ3(editable)=false);
+		Set(TFJ4(editable)=false);
+		Set(TFJ5(editable)=false);
+		Set(TFJ6(editable)=false);
+		Set(TFJ7(editable)=false);
+		Set(TFJ8(editable)=false);
+		Set(TFJ9(editable)=false);
+		Set(TFJ10(editable)=false);
+		Set(TFJ11(editable)=false);
+		Set(TFJ12(editable)=false);
+		Set(TFJ13(editable)=false);
+		Set(TFJ14(editable)=false);
+		Set(TFJ15(editable)=false);
+		Set(TFJ16(editable)=false);
+		Set(TFJ17(editable)=false);
+		Set(TFJ18(editable)=false);
+		Set(TFJ19(editable)=false);
+		Set(TFJ20(editable)=false);
+		Set(BMulai(enabled)=false);
+		Set(BNext(enabled)=false);
+		Set(BPrev(enabled)=false);
+		Set(BSubmit(enabled)=false);
+		if user1=benar1 then
+			p1:=1; Set(TFJ1(background)=green) 
+			else
+				p1:=0; Set(TFJ1(background)=yellow)
+				end if;
+		if user2=benar2 then
+			p2:=1; Set(TFJ2(background)=green) 
+			else
+				p2:=0; Set(TFJ2(background)=yellow)
+				end if;
+		if user3=benar3 then
+			p3:=1; Set(TFJ3(background)=green) 
+			else
+				p3:=0; Set(TFJ3(background)=yellow)
+				end if;
+		if user4=benar4 then
+			p4:=1; Set(TFJ4(background)=green) 
+			else
+				p4:=0; Set(TFJ4(background)=yellow)
+				end if;
+		if user5=benar5 then
+			p5:=1; Set(TFJ5(background)=green) 
+			else
+				p5:=0; Set(TFJ5(background)=yellow)
+				end if;
+		if user6=benar6 then
+			p6:=1; Set(TFJ6(background)=green) 
+			else
+				p6:=0; Set(TFJ6(background)=yellow)
+				end if;
+		if user7=benar7 then
+			p7:=1; Set(TFJ7(background)=green) 
+			else
+				p7:=0; Set(TFJ7(background)=yellow)
+				end if;
+		if user8=benar8 then
+			p8:=1; Set(TFJ8(background)=green) 
+			else
+				p8:=0; Set(TFJ8(background)=yellow)
+				end if;
+		if user9=benar9 then
+			p9:=1; Set(TFJ9(background)=green) 
+			else
+				p9:=0; Set(TFJ9(background)=yellow)
+				end if;
+		if user10=benar10 then
+			p10:=1; Set(TFJ10(background)=green) 
+			else
+				p10:=0; Set(TFJ10(background)=yellow)
+				end if;
+		if user11=benar11 then
+			p11:=1; Set(TFJ11(background)=green) 
+			else
+				p11:=0; Set(TFJ11(background)=yellow)
+				end if;
+		if user12=benar12 then
+			p12:=1; Set(TFJ12(background)=green) 
+			else
+				p12:=0; Set(TFJ12(background)=yellow)
+				end if;
+		if user13=benar13 then
+			p13:=1; Set(TFJ13(background)=green) 
+			else
+				p13:=0; Set(TFJ13(background)=yellow)
+				end if;
+		if user14=benar14 then
+			p14:=1; Set(TFJ14(background)=green) 
+			else
+				p14:=0; Set(TFJ14(background)=yellow)
+				end if;
+		if user15=benar15 then
+			p15:=1; Set(TFJ15(background)=green) 
+			else
+				p15:=0; Set(TFJ15(background)=yellow)
+				end if;
+		if user16=benar16 then
+			p16:=1; Set(TFJ16(background)=green) 
+			else
+				p16:=0; Set(TFJ16(background)=yellow)
+				end if;
+		if user17=benar17 then
+			p17:=1; Set(TFJ17(background)=green) 
+			else
+				p17:=0; Set(TFJ17(background)=yellow)
+				end if;
+		if user18=benar18 then
+			p18:=1; Set(TFJ18(background)=green) 
+			else
+				p18:=0; Set(TFJ18(background)=yellow)
+				end if;
+		if user19=benar19 then
+			p19:=1; Set(TFJ19(background)=green) 
+			else
+				p19:=0; Set(TFJ19(background)=yellow)
+				end if;
+		if user20=benar20 then
+			p20:=1; Set(TFJ20(background)=green) 
+			else
+				p20:=0; Set(TFJ20(background)=yellow)
+				end if;
+		N:=evalf((p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12+p13+p14+p15+p16+p17+p18+p19+p20)/0.2,3);
+		Set(TFNilai=N);
+		if N>=75 then Set(TBWarning="Selamat, kamu telah menuntaskan materi ini.",TBWarning(background)=green)
+			else
+				Set(TBWarning="Kamu belum memenuhi nilai minimal, ayo belajar lagi!",TBWarning(background)=yellow)
+				end if;
+	end proc:
+
+#Maplet
+
+MapletHome:=Maplet(
+			'onstartup'=RunWindow('Home'),
+			Window['Home'](
+				'title'="Trigonometri: Sudut Berelasi",
+				'width'=500,'height'=500,
+				resizable=false,
+					BoxLayout(
+						BoxColumn(
+							'background'="7FFFD4",
+							'halign'=center,
+								BoxRow(
+									'background'="7FFFD4",
+									'halign'=center,
+									Label("Selamat Datang",
+										'font'=Font("Arial Black",30),'foreground'=blue)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									'halign'=center,
+									Label("Silahkan Pilih Materi",
+										'font'=Font("Berlin Sans FB",30),'foreground'=blue)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									'halign'=center,
+									Button("Sudut &prop;",'background'=yellow,'foreground'=blue,
+										RunWindow('M1')),
+									Button("Sudut 90&deg;-&prop;",'background'=yellow,'foreground'=blue,
+										RunWindow('M2')),
+									Button("Sudut 180&deg;-&prop;",'background'=yellow,'foreground'=blue,
+										RunWindow('M3'))
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									'halign'=center,
+									Button("Sudut 180&deg;+&prop;",'background'=yellow,'foreground'=blue,
+										RunWindow('M4')),
+									Button("Sudut 360&deg;-&prop;",'background'=yellow,'foreground'=blue,
+										RunWindow('M5'))
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									'halign'=center,
+									Label("Setelah paham semua materi, silahkan coba latihan berikut!",
+										'font'=Font("Berlin Sans FB",15),foreground=blue)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									'halign'=center,
+									Button("Latihan",'background'=green,'foreground'=black,
+										RunWindow('Lat'))
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									'halign'=center,
+									Label("Jika sudah cukup dengan latihannya, silahkan jawab soal evaluasi berikut!",
+										'font'=Font("Berlin Sans FB",15),foreground=blue)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									'halign'=center,
+									Button("Evaluasi",'background'=green,'foreground'=black,
+										RunWindow('Eval'))
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									'halign'=center,
+									Button("Keluar",'background'=red,'foreground'=red,Shutdown())
+								)
+						)
+					)
+				),
+				Window['M1'](
+				'title'="Trigonometri: Sudut Berelasi",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'="7FFFD4",
+						BoxRow(
+							'background'="7FFFD4",
+							'halign'=right,
+							Button("Petunjuk",'background'=blue,RunWindow('PM1'))
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Perhatikan Gambar Berikut!",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Amati kapan nilai Sin, Cos, dan Tan bernilai Positif atau Negatif",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							BoxColumn(
+								'background'="7FFFD4"
+							),
+							BoxColumn(
+								'background'="#B8860B",
+								Plotter['PL1'](F(0))
+							),
+							BoxColumn(
+								'background'="7FFFD4"
+							)	
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Geser slider di bawah dan amati",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Slider['SL1'](0..360,0,'showticks','background'="#CC99FF",'foreground'=red,'filled'=true,
+								'majorticks'=20,'minorticks'=10,'snapticks'=false,'showlabels'=false,'onchange'='A1')
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("&prop; adalah sudut antara sumbu x positif dengan r",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							'halign'=none,
+							BoxColumn(
+								'background'="7FFFD4",
+								BoxRow(
+									'background'="7FFFD4",
+									Label("&prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC"),
+									HorizontalGlue(),
+									TextField['TFSudut']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Sin &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC"),
+									HorizontalGlue(),
+									TextField['TFSin']('editable'=false,'background'=pink,'width'=10)
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Cos &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC"),
+									HorizontalGlue(),
+									TextField['TFCos']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Tan &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC"),
+									HorizontalGlue(),
+									TextField['TFTan']('editable'=false,'background'=pink,'width'=10)
+								)
+							)
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Jika sudah mengerti, silahkan pelajari materi selanjutnya!",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Button("Kembali",'background'=red,'foreground'=red,CloseWindow('M1'))
+						)
+					)
+				)
+			),
+			Window['PM1'](
+				'title'="Petunjuk",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'=cyan,
+						BoxRow(
+							'background'=cyan,
+							Label("Lakukan eksplorasi pada media dengan menggeser slider.",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("Amati bagaimana perbandingan trigonometri pada masing-masing kuadran,",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("cari tahu alasannya mengapa bisa positif atau negatif!",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Button("Mengerti",'background'=cyan,CloseWindow('PM1'))
+						)
+					)
+				)
+			),
+			Window['M2'](
+				'title'="Trigonometri: Sudut Berelasi",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'="7FFFD4",
+						BoxRow(
+							'background'="7FFFD4",
+							'halign'=right,
+							Button("Petunjuk",RunWindow('PM2'))
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Perhatikan gambar berikut",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Amati hubungan nilai perbandingan trigonometri pada",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("sudut &prop; dan sudut (90&deg;-&prop;)",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							BoxColumn(
+								'background'="7FFFD4"
+							),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							BoxColumn(
+								'background'="#B8860B",
+								Plotter['PL1_M2'](G(0))
+							),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							BoxColumn(
+								'background'="7FFFD4"
+							)
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Geser slider di bawah dan amati",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Slider['SL1_M2'](0..90,0,'showticks','background'="#CC99FF",'foreground'=red,'filled'=true,
+								'majorticks'=20,'minorticks'=10,'snapticks'=false,'showlabels'=false,'onchange'='A2')
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("&prop; adalah sudut yang berwarna merah",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=right,
+								BoxRow(
+									'background'="7FFFD4",
+									Label("&prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label(" Sin &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Cos &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Tan &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=left,
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSudut1_M2']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSin_M2']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFCos_M2']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFTan_M2']('editable'=false,'background'=pink,'width'=10)
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=right,
+								BoxRow(
+									'background'="7FFFD4",
+									Label("90&deg;-&prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Sin (90&deg;-&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Cos (90&deg;-&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Tan (90&deg;-&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=left,
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSudut2_M2']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSin2_M2']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFCos2_M2']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFTan2_M2']('editable'=false,'background'=pink,'width'=10)
+								)
+							)
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Jika sudah mengerti, silahkan pelajari materi selanjutnya",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Button("Kembali",'background'=red,'foreground'=red,CloseWindow('M2'))
+						)
+					)
+				)
+			),
+			Window['PM2'](
+				'title'="Petunjuk",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'=cyan,
+						BoxRow(
+							'background'=cyan,
+							Label("Lakukan eksplorasi pada media dengan menggeser slider.",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("Amati bagaimana hubungan perbandingan trigonometri pada sudut &prop; dan 90&deg;-&prop;",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("dan cari tahu alasan dibalik hubungan tersebut",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Button("Mengerti",'background'=cyan,CloseWindow('PM2'))
+						)
+					)
+				)
+			),
+			Window['M3'](
+				'title'="Trigonometri: Sudut Berelasi",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'="7FFFD4",
+						BoxRow(
+							'background'="7FFFD4",
+							'halign'=right,
+							Button("Petunjuk",'background'="7FFFD4",RunWindow('PM3'))
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Perhatikan gambar berikut.",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Amati hubungan nilai perbandingan trigonometri pada sudut &prop; dan sudut (180&deg;-&prop;)",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							BoxColumn(
+								'background'="7FFFD4"
+							),
+							BoxColumn(
+								'background'="#B8860B",
+								Plotter['PL2_M3'](F(0),'width'=300,'height'=300)
+							),
+							BoxColumn(
+								'background'="#B8860B",
+								Plotter['PL1_M3'](H2(Pi),'width'=300,'height'=300)
+							),
+							BoxColumn(
+								'background'="7FFFD4"
+							)
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Geser slider di bawah dan amati",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Slider['SL1_M3'](90..180,90,'showticks','background'="#CC99FF",'foreground'=red,'filled'=true,
+								'majorticks'=20,'minorticks'=10,'snapticks'=false,'showlabels'=false,'onchange'='A3')
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("&prop; adalah sudut yang berwarna merah",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							'halign'=right,
+							BoxColumn(
+								'background'="7FFFD4",
+								BoxRow(
+									'background'="7FFFD4",
+									Label("&prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Sin &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Cos &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Tan &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=left,
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSudut1_M3']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSin_M3']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFCos_M3']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFTan_M3']('editable'=false,'background'=pink,'width'=10)
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=right,
+								BoxRow(
+									'background'="7FFFD4",
+									Label("180&deg;-&prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Sin (180&deg;-&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Cos (180&deg;-&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Tan (180&deg;-&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=left,
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSudut2_M3']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSin2_M3']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFCos2_M3']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFTan2_M3']('editable'=false,'background'=pink,'width'=10)
+								)
+							)
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Jika sudah mengerti, silahkan pelajari materi selanjutnya",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Button("Kembali",'background'=red,'foreground'=red,CloseWindow('M3'))
+						)
+					)
+				)	
+			),
+			Window['PM3'](
+				'title'="Petunjuk",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'=cyan,
+						BoxRow(
+							'background'=cyan,
+							Label("Lakukan eksplorasi pada media dengan menggeser slider.",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("Amati bagaimana hubungan perbandingan trigonometri pada sudut &prop; dan 180&deg;-&prop;",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("dan cari tahu alasan dibalik hubungan tersebut.",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Button("Mengerti",'background'=cyan,CloseWindow('PM3'))
+						)
+					)
+				)
+			),
+			Window['M4'](
+				'title'="Trigonometri: Sudut Berelasi",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'="7FFFD4",
+						BoxRow(
+							'background'="7FFFD4",
+							'halign'=right,
+							Button("Petunjuk",'background'="7FFFD4",RunWindow('PM4'))
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Perhatikan gambar berikut!",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Amati hubungan nilai perbandingan trigonometri pada sudut &prop; dan sudut (180&deg;+&prop;)",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							BoxColumn(
+								'background'="7FFFD4"
+							),
+							BoxColumn(
+								'background'="#B8860B",
+								Plotter['PL2_M4'](F(0),'width'=300,'height'=300)
+							),
+							BoxColumn(
+								'background'="#B8860B",
+								Plotter['PL1_M4'](H2(Pi),'width'=300,'height'=300)
+							),
+							BoxColumn(
+								'background'="7FFFD4"
+							)
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Geser slider di bawah dan amati",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Slider['SL1_M4'](90..180,90,'showticks','background'="#CC99FF",'foreground'=red,'filled'=true,
+								'majorticks'=20,'minorticks'=10,'snapticks'=false,'showlabels'=false,'onchange'='A4')
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("&prop; adalah sudut yang berwarna merah.",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=right,
+								BoxRow(
+									'background'="7FFFD4",
+									Label("&prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Sin &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Cos &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Tan &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=left,
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSudut1_M4']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSin_M4']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFCos_M4']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFTan_M4']('editable'=false,'background'=pink,'width'=10)
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=right,
+								BoxRow(
+									'background'="7FFFD4",
+									Label("180&deg;+&prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Sin (180&deg;+&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Cos (180&deg;+&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Tan (180&deg;+&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=left,
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSudut2_M4']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSin2_M4']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFCos2_M4']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFTan2_M4']('editable'=false,'background'=pink,'width'=10)
+								)
+							)
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Jika sudah mengerti, silahkan pelajari materi selanjutnya.",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Button("Kembali",'background'=red,'foreground'=red,CloseWindow('M4'))
+						)
+					)
+				)
+			),
+			Window['PM4'](
+				'title'="Petunjuk",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'=cyan,
+						BoxRow(
+							'background'=cyan,
+							Label("Lakukan eksplorasi pada media dengan menggeser slider.",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("Amati bagaimana hubungan perbandingan trigonometri pada sudut &prop; dan 180&deg;+&prop;",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("dan cari tahu alasan dibalik hubungan tersebut.",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Button("Mengerti",'background'=cyan,CloseWindow('PM4'))
+						)
+					)
+				)
+			),
+			Window['M5'](
+				'title'="Trigonometri: Sudut Berelasi",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'="7FFFD4",
+						BoxRow(
+							'background'="7FFFD4",
+							'halign'=right,
+							Button("Petunjuk",'background'="7FFFD4",RunWindow('PM5'))
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Perhatikan gambar berikut!",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Amati hubungan nilai perbandingan trigonometri pada sudut &prop; dan sudut (360&deg;-&prop;)",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							BoxColumn(
+								'background'="7FFFD4"
+							),
+							BoxColumn(
+								'background'="#B8860B",
+								Plotter['PL2_M5'](F(0),'width'=300,'height'=300)
+							),
+							BoxColumn(
+								'background'="#B8860B",
+								Plotter['PL1_M5'](H4(0),'width'=300,'height'=300)
+							),
+							BoxColumn(
+								'background'="7FFFD4"
+							)
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Geser slider di bawah dan amati",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Slider['SL1_M5'](270..360,270,'showticks','background'="#CC99FF",'foreground'=red,'filled'=true,
+								'majorticks'=20,'minorticks'=10,'snapticks'=false,'showlabels'=false,'onchange'='A5')
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("&prop; adalah sudut yang berwarna merah.",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=right,
+								BoxRow(
+									'background'="7FFFD4",
+									Label("&prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Sin &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Cos &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Tan &prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=left,
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSudut1_M5']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSin_M5']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFCos_M5']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFTan_M5']('editable'=false,'background'=pink,'width'=10)
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								'halign'=right,
+								BoxRow(
+									'background'="7FFFD4",
+									Label("360&deg;-&prop; =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Sin (360&deg;-&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Cos (360&deg;-&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									Label("Tan (360&deg;-&prop;) =",
+										'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+								)
+							),
+							BoxColumn(
+								'background'="7FFFD4",
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSudut2_M5']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFSin2_M5']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFCos2_M5']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="7FFFD4",
+									TextField['TFTan2_M5']('editable'=false,'background'=pink,'width'=10)
+								)
+							)
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Label("Jika sudah mengerti, silahkan coba latihannya!",
+								'font'=Font("Cambria Math",bold,15),'foreground'="#FF00CC")
+						),
+						BoxRow(
+							'background'="7FFFD4",
+							Button("Kembali",'background'=red,'foreground'=red,CloseWindow('M5'))
+						)
+					)
+				)
+			),
+			Window['PM5'](
+				'title'="Petunjuk",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'=cyan,
+						BoxRow(
+							'background'=cyan,
+							Label("Lakukan eksplorasi pada media dengan menggeser slider.",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("Amati bagaimana hubungan perbandingan trigonometri pada sudut &prop; dan 360&deg;-&prop;",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Label("dan cari tahu alasan dibalik hubungan tersebut.",
+								'font'=Font("Cambria Math",bold,15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'=cyan,
+							Button("Mengerti",'background'=cyan,CloseWindow('PM5'))
+						)
+					)
+				)
+			),
+			Window['Lat'](
+				'title'="Latihan",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'="#CFCFFF",
+						BoxRow(
+							'background'="#CFCFFF",
+							Label("LATIHAN",
+								'font'=Font("Arial Black",30),'foreground'=red)
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							Button("Sudut Baru",'background'=blue,'foreground'=blue,Evaluate('function'='sdt')),
+							Button("Petunjuk",'background'=cyan,'foreground'=black,RunWindow('PLat'))
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							BoxColumn(
+								'background'="#CFCFFF",
+								'halign'=right,
+								BoxRow(
+									'background'="#CFCFFF",
+									"&prop; ="
+								),
+								BoxRow(
+									'background'="#CFCFFF",
+									"Sin &prop; ="
+								)
+							),
+							BoxColumn(
+								'background'="#CFCFFF",
+								'halign'=left,
+								BoxRow(
+									'background'="#CFCFFF",
+									TextField['TFSudut_Lat']('editable'=false,'background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="#CFCFFF",
+									TextField['TFSin_Lat']('background'=pink,'width'=10)
+								)
+							),
+							BoxColumn(
+								'background'="#CFCFFF",
+								'halign'=right,
+								BoxRow(
+									'background'="#CFCFFF",
+									"Cos &prop; ="
+								),
+								BoxRow(
+									'background'="#CFCFFF",
+									"tan &prop; ="
+								)
+							),
+							BoxColumn(
+								'background'="#CFCFFF",
+								'halign'=left,
+								BoxRow(
+									'background'="#CFCFFF",
+									TextField['TFCos_Lat']('background'=pink,'width'=10)
+								),
+								BoxRow(
+									'background'="#CFCFFF",
+									TextField['TFTan_Lat']('background'=pink,'width'=10)
+								)
+							)
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							Button['B2_Lat']("Jawab",'background'=blue,'foreground'=blue,Evaluate('function'='cek'),'enabled'=false),
+							Button['B3_Lat']("Nyerah",'background'=red,'foreground'=red,Evaluate('function'='show'),'enabled'=false)
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							TextBox['TFWarning_Lat']("Selamat datang, tekan tombol \"Sudut Baru\" untuk mulai!",'width'=25,
+								'height'=2,'background'=pink,'editable'=false)
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							Button("Keluar",'background'=red,'foreground'=red,CloseWindow('Lat'))
+						)
+					)
+				)
+			),
+			Window['PLat'](
+				'title'="Petunjuk",
+				'resizable'=false,
+				BoxLayout(
+					BoxColumn(
+						'background'="#FFCCCC",
+						BoxRow(
+							'background'="#FFCCCC",
+							"Untuk menuliskan jawaban pada kolom yang tersedia."
+						),
+						BoxRow(
+							'background'="#FFCCCC",
+							"Jika dalam bentuk akar mengikuti format berikut:"
+						),
+						BoxRow(
+							'background'="#FFCCCC",
+							"Misalkan, bentuk",
+							MathMLViewer['ML1_Lat']('background'="#FFCCCC",'width'=50,'height'=30,'value'=MathML[Export](sqrt(2))),
+							"ditulis",
+							TextField['TF1_Lat']('width'=10,'value'=2^(1/2),'editable'=false,'background'="#FFCCCC")
+						),
+						BoxRow(
+							'background'="#FFCCCC",
+							"Jika nilai perbandingan trigonometri yang diminta tak terdefinisi,"
+						),
+						BoxRow(
+							'background'="#FFCCCC",
+							"Tuliskan \"Tak Terdefinisi\" (dengan tanda petik)."
+						),
+						BoxRow(
+							'background'="#FFCCCC",
+							Button("Mengerti",'background'=blue,'foreground'=blue,CloseWindow('PLat'))
+						)
+					)
+				)
+			),
+			Window['Eval'](
+				'title'="Evaluasi",
+				BoxLayout(
+					BoxColumn(
+						'background'="#CFCFFF",
+						BoxRow(
+							'background'="#CFCFFF",
+							Label("Silahkan klik tombol \"Mulai\" untuk mulai mengerjakan soal.",'font'=Font("Cambria Math",15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							Label("Masukkan jawaban pada kolom lembar jawaban yang tersedia.",'font'=Font("Cambria Math",15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							Button['BMulai']("Mulai",'background'="#CFCFFF",Evaluate('function'='mulai'))
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							Button['BPrev']("Soal Sebelumnya",'enabled'=false,'background'="#CFCFFF",Evaluate('function'='mundur')),
+							Button['BNext']("Soal Berikutnya",'enabled'=false,'background'="#CFCFFF",Evaluate('function'='maju'))
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							'halign'=left,
+							Label("Soal Nomor",'font'=Font("Cambria Math",15),'foreground'=blue),
+							TextField['TFNomor']('background'=pink,'width'=2,'editable'=false),
+								HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue()
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							MathMLViewer['MVSoal']('background'=pink,'width'=500,'height'=80,'fontsize'=10)
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							"A",
+							MathMLViewer['MA']('background'=pink,'width'=100,'height'=50,'fontsize'=8),
+							"B",
+							MathMLViewer['MB']('background'=pink,'width'=100,'height'=50,'fontsize'=8),
+							"C",
+							MathMLViewer['MC']('background'=pink,'width'=100,'height'=50,'fontsize'=8)
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							'halign'=center,
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							"D",
+							MathMLViewer['MD']('background'=pink,'width'=100,'height'=50,'fontsize'=8),
+							"E",
+							MathMLViewer['MF']('background'=pink,'width'=100,'height'=50,'fontsize'=8),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue()
+						),
+						
+						BoxCell(
+							Label("Lembar Jawaban",'font'=Font("Cambria Math",15),'foreground'=blue)
+						),
+						BoxRow(
+							'background'="#F9EAC3",
+							BoxColumn(
+								'background'="#F9EAC3",
+								'halign'=left,
+								BoxCell("1."),
+								BoxCell("2."),
+								BoxCell("3."),
+								BoxCell("4."),
+								BoxCell("5.")
+							),
+							BoxColumn(
+								'background'="#F9EAC3",
+								'halign'=left,
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ1']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ2']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ3']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ4']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ5']('width'=2)
+								)
+							),
+							BoxColumn(
+								'background'="#F9EAC3",
+								'halign'=left,
+								BoxCell("6."),
+								BoxCell("7."),
+								BoxCell("8."),
+								BoxCell("9."),
+								BoxCell("10.")
+							),
+							BoxColumn(
+								'background'="#F9EAC3",
+								'halign'=left,
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ6']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ7']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ8']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ9']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ10']('width'=2)
+								)
+							),
+							BoxColumn(
+								'background'="#F9EAC3",
+								'halign'=left,
+								BoxCell("11."),
+								BoxCell("12."),
+								BoxCell("13."),
+								BoxCell("14."),
+								BoxCell("15.")
+							),
+							BoxColumn(
+								'background'="#F9EAC3",
+								'halign'=left,
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ11']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ12']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ13']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ14']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ15']('width'=2)
+								)
+							),
+							BoxColumn(
+								'background'="#F9EAC3",
+								'halign'=left,
+								BoxCell("16."),
+								BoxCell("17."),
+								BoxCell("18."),
+								BoxCell("19."),
+								BoxCell("20.")
+							),
+							BoxColumn(
+								'background'="#F9EAC3",
+								'halign'=left,
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ16']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ17']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ18']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ19']('width'=2)
+								),
+								BoxRow(
+									'background'="#F9EAC3",
+									TextField['TFJ20']('width'=2)
+								)
+							)
+						),
+						BoxCell(
+							Button['BSubmit']("Submit",'foreground'=blue,'background'=blue,'enabled'=false,Evaluate('function'='submit'))
+						),
+						BoxRow(
+							'background'="#CFCFFF",
+							'halign'=left,
+							Label("Nilai",'font'=Font("Cambria Math",15),'foreground'=blue),
+							TextField['TFNilai']('background'=pink,'width'=3,'editable'=false),
+								HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue(),
+							HorizontalGlue()
+						),
+						BoxCell(
+							TextBox['TBWarning']('background'=pink,'width'=70,'height'=5,'editable'=false)
+						),
+						BoxCell(
+							Button("Keluar",'foreground'=red,'background'=red,CloseWindow('Eval'))
+						)
+					)
+				)
+			),
+			Action['A1'](
+				Evaluate('target'='TFSudut','function'='SL1'),
+				Evaluate('target'='TFSin','function'='evalf(sin(SL1*Pi/180),3)'),
+				Evaluate('target'='TFCos','function'='evalf(cos(SL1*Pi/180),3)'),
+				Evaluate('target'='TFTan','function'='T1('SL1')'),
+				Evaluate('target'='PL1','function'='F('SL1'*Pi/180)')
+			),
+			Action['A2'](
+				Evaluate('target'=TFSudut1_M2,'function'='SL1_M2'),
+				Evaluate('target'=TFSudut2_M2,'function'=90-'SL1_M2'),
+				Evaluate('target'=TFSin_M2,'function'='evalf(sin('SL1_M2'*Pi/180),3)'),
+				Evaluate('target'=TFSin2_M2,'function'='evalf(sin((90-'SL1_M2')*Pi/180),3)'),
+				Evaluate('target'=TFCos_M2,'function'='evalf(cos('SL1_M2'*Pi/180),3)'),
+				Evaluate('target'=TFCos2_M2,'function'='evalf(cos((90-'SL1_M2')*Pi/180),3)'),
+				Evaluate('target'=TFTan_M2,'function'='T2('SL1_M2')'),
+				Evaluate('target'=TFTan2_M2,'function'='T2(90-'SL1_M2')'),
+				Evaluate('target'='PL1_M2','function'='G('SL1_M2'*Pi/180)')
+			),
+			Action['A3'](
+				Evaluate('target'='TFSudut1_M3','function'='SL1_M3'-90),
+				Evaluate('target'='TFSudut2_M3','function'=270-'SL1_M3'),
+				Evaluate('target'='TFSin_M3','function'='evalf(sin(('SL1_M3'-90)*Pi/180),3)'),
+				Evaluate('target'='TFSin2_M3','function'='evalf(sin((270-'SL1_M3')*Pi/180),3)'),
+				Evaluate('target'='TFCos_M3','function'='evalf(cos(('SL1_M3'-90)*Pi/180),3)'),
+				Evaluate('target'='TFCos2_M3','function'='evalf(cos((270-'SL1_M3')*Pi/180),3)'),
+				Evaluate('target'='TFTan_M3','function'='T2('SL1_M3'-90)'),
+				Evaluate('target'='TFTan2_M3','function'='T2(270-'SL1_M3')'),
+				Evaluate('target'='PL2_M3','function'='F(('SL1_M3'-90)*Pi/180)'),
+				Evaluate('target'='PL1_M3','function'='H2((270-'SL1_M3')*Pi/180)')
+			),
+			Action['A4'](
+				Evaluate('target'='TFSudut1_M4','function'='SL1_M4'-90),
+				Evaluate('target'='TFSudut2_M4','function'=90+'SL1_M4'),
+				Evaluate('target'='TFSin_M4','function'='evalf(sin(('SL1_M4'-90)*Pi/180),3)'),
+				Evaluate('target'='TFSin2_M4','function'='evalf(sin((90+'SL1_M4')*Pi/180),3)'),
+				Evaluate('target'='TFCos_M4','function'='evalf(cos(('SL1_M4'-90)*Pi/180),3)'),
+				Evaluate('target'='TFCos2_M4','function'='evalf(cos((90+'SL1_M4')*Pi/180),3)'),
+				Evaluate('target'='TFTan_M4','function'='T2('SL1_M4'-90)'),
+				Evaluate('target'='TFTan2_M4','function'='T3(90+'SL1_M4')'),
+				Evaluate('target'='PL2_M4','function'='F(('SL1_M4'-90)*Pi/180)'),
+				Evaluate('target'='PL1_M4','function'='H2((90+'SL1_M4')*Pi/180)')
+			),
+			Action['A5'](
+				Evaluate('target'='TFSudut1_M5','function'='SL1_M5'-270),
+				Evaluate('target'='TFSudut2_M5','function'=630-'SL1_M5'),
+				Evaluate('target'='TFSin_M5','function'='evalf(sin(('SL1_M5'-270)*Pi/180),3)'),
+				Evaluate('target'='TFSin2_M5','function'='evalf(sin((630-'SL1_M5')*Pi/180),3)'),
+				Evaluate('target'='TFCos_M5','function'='evalf(cos(('SL1_M5'-270)*Pi/180),3)'),
+				Evaluate('target'='TFCos2_M5','function'='evalf(cos((630-'SL1_M5')*Pi/180),3)'),
+				Evaluate('target'='TFTan_M5','function'='T2('SL1_M5'-270)'),
+				Evaluate('target'='TFTan2_M5','function'='T3(630-'SL1_M5')'),
+				Evaluate('target'='PL2_M5','function'='F(('SL1_M5'-270)*Pi/180)'),
+				Evaluate('target'='PL1_M5','function'='H4((180-('SL1_M5'-90))*Pi/180)')
+			)
+		):
+Maplets[Display](MapletHome):
